@@ -1,0 +1,75 @@
+//@server(
+//	jwt: Auth
+//)
+service core-api {
+	@handler UserHandler
+	post /user/login(LoginRequest) returns (LoginResponse)
+	
+	@handler UserDetail
+	post /user/detail(UserDetailRequest) returns (UserDetailResponse)
+	
+	@handler UserDeletehandler
+	post /user/delete (UserDeleteRequest) returns (UserDeleteResponse)
+	
+	@handler UserUpdatehandler
+	post /user/update (UserUpdateRequest) returns (UserUpdateResponse)
+}
+
+@server(
+	jwt: Auth
+)
+service core-api {
+	@handler UserInfohandler
+	get /user/userinfo (UserInfoRequest) returns (UserInfoResponse)
+}
+
+type LoginRequest {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+}
+
+type LoginResponse {
+	Token string `json:"token"`
+}
+
+type UserDetailRequest {
+	Id     int    `json:"id"`
+	Tall   int32  `json:"tall"`
+	Email  string `json:"email"`
+	Sex    string `json:"sex"`
+	Hobbit string `json:"hobbit"`
+}
+
+type UserDetailResponse {
+	Message string `json:"message"`
+}
+
+type UserInfoRequest {
+	Id int `json:"id"`
+}
+
+type UserInfoResponse {
+	Tall   int32  `json:"tall"`
+	Eamil  string `json:"eamil"`
+	Sex    string `json:"sex"`
+	Hobbit string `json:"hobbit"`
+}
+
+type UserDeleteRequest {
+	Id int `json:"id"`
+}
+type UserDeleteResponse {
+	Message string `json:"message"`
+}
+
+type UserUpdateRequest {
+	Id     int    `json:"id"`
+	Sex    string `json:"sex"`
+	Email  string `json:"email"`
+	Hobbit string `json:"hobbit"`
+	Tall   int32  `json:"tall"`
+}
+
+type UserUpdateResponse {
+	Message string `json:"message"`
+}
